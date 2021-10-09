@@ -1,0 +1,7 @@
+---
+layout: post
+title:  "Blog 3"
+date:   2021-10-08 10:38:21 -0700
+categories: jekyll update
+---
+I had recently learned how to create a containerized web server using docker and github in class. The overall purpose of the lab was to get our resumes to be displayed on the web server from a docker container. I started the lab by copying my index.html file which contained the code for my resume. Afterwards, I used the starter dockerfile included in the lab. In the dockerfile are commands to start an Apache web server, set the working directory into /usr/local/apache2/htdocs and a command to copy the html file into the working directory. On my local machine I was able to add, commit, and push the files into my github repository for the next step. We had to run the container with the files listed within the repository instead of a local directory. My first issue was that when executing the provided command in the lab, it would return an error stating that the master branch on github couldn't be located. After some research and troubleshooting, I was able to fix the error by specifying the fragment of the main branch within the command. “docker build -t my_resume git@github.com:CIT384/z_containerized-website-karogt.git#main.”  After adding #main to the command to specify the branch. The command worked and I was able to run the web server locally. It was interesting to see how flexible containers are when it comes to web servers. Overall, I look forward to learning more about containers due to the ease of use and testing they provide. 
