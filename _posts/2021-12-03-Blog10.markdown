@@ -1,0 +1,37 @@
+---
+layout: post
+title:  "Blog 10"
+date:   2021-12-03 10:53:51 -0700
+categories: jekyll update
+---
+This week I worked on the SSL lab for CIT 384 and started to understand the way certificates work. The first thing I did was implement the apache mod ssl within the dockerfile. As follows the syntax was RUN a2enmod ssl. After that I had to implement the dockerfile to create the certificate as self signed. The first command I ran was 
+
+RUN apt-get install -y openssl
+
+After I had to implement the specifics to the key as follows,
+
+RUN openssl req -new -newkey rsa:4096 -days 3650 -nodes -x509 -subj \
+    "/C=US/ST=California/L=Northridge/O=Karo/CN=site1.internal" \
+    -keyout /etc/ssl/private/ssl.key -out /etc/ssl/certs/ssl.crt
+
+After that I specified the keyout files in the appropriate directories and I went on to work on the vhost file. The vhost file was pretty simple and only required a few modifications to get it to work. The main modifications I made were to turn the SSLEngine on and specifying the certificate key locations. Within one vhost file we can also specify the ports, as follows I inputted both port 443 and 80. One part that was more difficult was implementing the Rewrite and Redirect rules. Within the port 80 Section of the vHost file I was able to write a few lines of code to get the redirect to work. One issue I had was when using Google chrome it would not let me accept the certificate and trust it due to being self-signed. I was able to use safari and accept the certificate manually and proceed to the web page. 
+
+<VirtualHost *:443>
+  DocumentRoot /var/www/html/site1
+  ServerName site1.internal
+  SSLEngine on
+  SSLCertificateFile /etc/ssl/certs/ssl.crt
+  SSLCertificateKeyFile /etc/ssl/private/ssl.key
+  <Directory /var/www/html>
+    AllowOverride All
+    Options FollowSymlinks
+  </Directory>
+
+</VirtualHost>
+
+<VirtualHost *:80>
+  ServerName site1.internal
+  Redirect permanent / https://site1.internal
+  RewriteCond %{HTTPS} off
+  RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R,L]
+</VirtualHost>
