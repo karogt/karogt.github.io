@@ -1,3 +1,9 @@
+---
+layout: post
+title:  "Blog 11"
+date:   2021-12-10 10:55:55 -0700
+categories: jekyll update
+---
 This week I had the opportunity to work on the CIT 480 group project. For this week I began to implement support for grafana. Grafana is a web-based monitoring system that can work with prometheus and node exporter. My goal was to understand how to get everything working properly by the end of the semester. I started working off what I already had coded in my previous work with ansible. I began by researching how to automate the code needed to install grafana on an apache server. I came up with this code and it ended up running effectively. 
 ---
 - name: Install necessary package
