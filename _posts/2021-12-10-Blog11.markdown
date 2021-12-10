@@ -1,0 +1,30 @@
+This week I had the opportunity to work on the CIT 480 group project. For this week I began to implement support for grafana. Grafana is a web-based monitoring system that can work with prometheus and node exporter. My goal was to understand how to get everything working properly by the end of the semester. I started working off what I already had coded in my previous work with ansible. I began by researching how to automate the code needed to install grafana on an apache server. I came up with this code and it ended up running effectively. 
+---
+- name: Install necessary package
+  apt: 
+      name: apt-transport-https
+      state: present
+      update_cache: yes
+
+- name: add grafana gpg key
+  shell: curl https://packages.grafana.com/gpg.key | sudo apt-key add -
+
+- name: add grafana repo 
+  apt_repository:
+    repo: deb https://packages.grafana.com/oss/deb stable main
+    state: present
+    filename: grafana
+
+- name: Install grafana
+  apt: 
+      name: grafana
+      state: present
+      update_cache: yes
+
+- name: Enable and start grafana service
+  service:
+    name: grafana-server
+    enabled: yes
+    state: started
+
+After I tested the repo in docker, I updated my main.yml file to include the grafana tasks directory to be executed along with the others. Then I went into my EC2 instance and modified my security group to allow port 3000 to be opened. After I ran the main.yml file, I opened up the EC2 instance on port 3000 along with the IPV4 DNS and logged into grafana. I then added the prometheus plug in and I was able to see my metrics. Overall, I can see why so many people choose to have a decent monitoring service as it is more versatile and user friendly.
