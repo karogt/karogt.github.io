@@ -1,0 +1,36 @@
+---
+layout: post
+title:  "Blog 1 Spring"
+date:   2022-02-19 11:53:51 -0700
+categories: jekyll update
+---
+
+This week I began researching how to automate the process of dashboards with grafana. Our senior project requires a lot more automation principles and I figured that it is important to not have to set up our monitoring systems configuration multiple times if we need to reset an instance or migrate it to a new server. One of the ways I have found to automate this is grafana provisioning. I began by testing this as localhost. 
+
+First, I created a few directories. Provisioning, datasources, and the datasource file as well.
+
+grafana/provisioning/datasources/datasource.yml
+
+My datasource file consists of
+
+apiVersion: 1
+ 
+datasources:
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    url: http://localhost:9090
+
+I then downloaded a pre-made dashboard in .json format and placed it within the dashboards directory. 
+
+I then created a provider config file as follows,
+
+apiVersion: 1
+ 
+providers:
+  - name: 'Default'
+    folder: 'Services'
+    options:
+      path: /etc/grafana/provisioning/dashboards
+
+After I was able to start my EC2 i did not find either the datasource or that dashboard on grafana. I am still researching as to why these do not automatically get passed.
