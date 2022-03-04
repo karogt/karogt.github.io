@@ -1,0 +1,33 @@
+---
+layout: post
+title:  "Blog 3 Spring"
+date:   2022-03-03 15:55:51 -0700
+categories: jekyll update
+---
+
+I decided to implement alerts into our grafana application so that we can receive notifications that our infrastructure may be down or experience issues. I wanted to implement this because in the real world it is incredibly costly to a business if an organization has long downtime due to a server. 
+
+The first step I took was verifying that my grafana_use_provisioning is set to true within my defaults/main.yml file. If it was not set to true, grafana will not send alerts. 
+
+After that I had to modify the custom.ini file to configure the alerts. 
+
+Within the SMTP/ Emailing section, this is my configuration
+
+#################################### SMTP / Emailing ##########################
+[smtp]
+enabled = true
+host = smtp.my.csun.edu:587
+user =karo.torosyan.863@my.csun.edu
+# If the password contains # or ; you have to wrap it with triple quotes. Ex """#password;"""
+password = PW
+;cert_file =
+;key_file =
+skip_verify = true
+from_address = karo.torosyan.863@my.csun.edu
+from_name = Grafana
+# EHLO identity in SMTP dialog (defaults to instance_name)
+;ehlo_identity = dashboard.example.com
+# SMTP startTLS policy (defaults to 'OpportunisticStartTLS')
+;startTLS_policy = NoStartTLS
+
+Currently I am still undergoing testing as I am not sure how to configure grafana to send me an email when there is an issue within the monitoring. 
