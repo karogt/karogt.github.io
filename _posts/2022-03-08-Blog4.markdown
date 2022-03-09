@@ -11,27 +11,27 @@ I wanted to learn more about webpages in HTML in order to make a more pleasant w
 
 We can do this by defining the style at the top of the webpage and then the class for the element. It would work as such.
 
-<!DOCTYPE html>
-<html>
-<head>
-<style>
-.Blog {
-  background-color: green;
-  color: white;
-  border: 3px solid black;
-  margin: 30px;
-  padding: 30px;
-}
-</style>
-</head>
-<body>
+#<!DOCTYPE html>
+#<html>
+#<head>
+#<style>
+#.Blog {
+#  background-color: green;
+#  color: white;
+#  border: 3px solid black;
+#  margin: 30px;
+#  padding: 30px;
+#}
+#</style>
+#</head>
+#<body>
 
-<div class="Blog">
-<h2>Karo's Blog</h2>
-<p>This is where something important goes.</p>
-</div>
+#<div class="Blog">
+#<h2>Karo's Blog</h2>
+#<p>This is where something important goes.</p>
+#</div>
 
 
-Under <style> , I listed how I want my blog style to look like, and when I reference the .Blog style and add it to the second heading under the <div class="Blog"> line, the style is added automatically. 
+#Under <style> , I listed how I want my blog style to look like, and when I reference the .Blog style and add it to the second heading under the <div class="Blog"> line, the style is added automatically. 
 
 ![Alt Text](/assets/images/blog4.PNG)
