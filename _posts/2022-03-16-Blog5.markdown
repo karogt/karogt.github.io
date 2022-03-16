@@ -1,0 +1,22 @@
+---
+layout: post
+title:  "Blog 5 Spring"
+date:   2022-03-16 16:55:51 -0700
+categories: jekyll update
+image: /assets/images/slack.PNG
+---
+Blog 5
+
+I was recently working on integrating slack notifications along with grafana so that we can see what is going on within our server without keeping track of grafana. The installation took some time but I was able to get it somewhat working. 
+I first created a slack channel just for testing. 
+After I opened grafana and started to implement it to notify my channel.
+ I began with inputting my slack channel and then creating an app within slack to get an API token. 
+ After inputting the token into grafana and testing, grafana threw an error that my scope was missing.
+ After some research I looked into integrating a webhook along with it and inputted that in addition.
+
+https://hooks.slack.com/services/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
+
+ After testing, my slack channel received the test notification and grafana was able to send alerts. Overall I have a far better understanding of how this process works and will now look into automating this process with ansible. 
+
+Test Responses from slack
+![Alt Text](/assets/images/slack.PNG)
