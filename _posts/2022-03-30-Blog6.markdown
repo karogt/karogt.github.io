@@ -3,7 +3,7 @@ layout: post
 title:  "Blog 6 Spring"
 date:   2022-03-30 08:02:51 -0700
 categories: jekyll update
-image: /assets/images/slack2.PNG
+image: /assets/images/slack2
 ---
 I have been working on getting alerts integrated into slack so that my team can see if there is something wrong with the instance. One of the main ways I was able to do this was with the alert manager. Alertmanager is an add-on with Prometheus kind of like node exporter. With some configuration, we can use the alert manager to send specified alerts to a bunch of different addresses so that we can see what we want to. I started off by installing an alert manager and creating its own directory. After I had to create multiple files for the configs to work with ansible to get this all automated and I had to modify my previous files to get things working properly. I think the most important configuration files were the alert.rules.yml  file and the alertmanager.yml file. My alertmanager.yml file holds all the configurations of where I want my alerts to go and how I want them templated. 
 The main configuration is as follows,
@@ -40,4 +40,4 @@ groups:
         severity: 'critical'
 ```
 I tested it by stopping node_exporter on my instance and then waiting for alert manager to send over the notification. 
-![Alt Text](/assets/images/slack2.PNG)
+![Alt Text](/assets/images/slack2)
