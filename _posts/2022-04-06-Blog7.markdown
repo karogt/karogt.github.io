@@ -1,0 +1,19 @@
+---
+layout: post
+title:  "Blog 7 Spring"
+date:   2022-04-06 08:08:51 -0700
+categories: jekyll update
+---
+This week I had the opportunity to create a static IP configuration for a laptop user at my workplace. The ultimate way to allow access to a certain webpage is based upon an IP address and a user login. The webpage is only accessible to certain IP addresses that have been approved by management for security reasons.
+
+I was able to configure the static IP address by navigating over network configuration settings and modifying the ethernet adapter settings within windows. In my case and in most others, this would be in the IPV4 settings.
+
+For example, let's say the IP address was 127.25.26.235
+
+We modify the automatic configuration under the IPV4 settings to show this as a static config.
+We then input the subnet of 255.255.255.0.
+
+After we input the default gateway so that this computer can communicate with the other networks. This address will then become 127.25.26.1 or the last octet as .254. It is a matter of preference depending on how many machines will connect as this is basically the router. 
+
+We then have to specify the DNS server so that the user can find the requested webpage. 
+After this configuration, the machine will be able to access the webpage only after it is connected to the domain and resolving itself as a certain IP address.
