@@ -1,0 +1,41 @@
+---
+layout: post
+title:  "Blog 8 Spring"
+date:   2022-04-11 08:08:51 -0700
+categories: jekyll update
+---
+Blog 8
+
+This week I started working on creating a database with SQL. I started out by loading up SQLite and calling my database, 
+
+grocery_store.db
+
+
+I then began to create some tables and input data required so that we can run SQL commands against it and query the data. 
+
+create table grocery_visit(date TEXT, time_spent_min INTEGER, amount_spent REAL);
+create table grocery_list(date TEXT, item_name TEXT, item_category TEXT);
+
+The syntax as inputted above holds the values in the table such as the date, time spent, item name and the type of data stored such as text, integers or REAL with is a floating-point number. 
+
+I then began to insert data into the database with the following commands,
+
+insert into grocery_list values("2022-04-11", "Hamburger patties", "Meat and Fish");
+insert into grocery_list values("2022-04-12", "Tomato", "Fruits and Vegetables");
+insert into grocery_list values("2022-04-13", "Mayo", "Pantry");
+
+Then for the visits
+
+insert into grocery_visit values ('2022-12-11', 40, 45.99);
+insert into grocery_visit values ('2022-12-12', 25, 37.30);
+insert into grocery_visit values ('2022-12-13', 20, 15.82);
+
+With these values, I am able to now query for the data I am looking for such as 
+
+select *
+from grocery_list
+where item_category like 'Fruit%';
+
+The output will be looking for all values within the grocery list table where the item category is “Fruit%” with leads to Fruits and Vegetables.
+
+2022-04-12|Tomato|Fruits and Vegetables
