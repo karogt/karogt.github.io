@@ -1,0 +1,21 @@
+---
+layout: post
+title:  "Blog 10 Spring"
+date:   2022-04-20 08:08:51 -0700
+categories: jekyll update
+---
+I was working on our group project this week for ways to execute our ansible YAML file so that once our infrastructure is set up with terraform, we can deploy the application and monitoring with as little interference as possible. One of the ways I found that will allow me to make this happen is to incorporate a user data script.
+
+```
+  #user_data = file("${path.module}/user-data.sh")
+  user_data = <<-EOF
+              #!/bin/bash
+              apt update && apt install ansible -y
+              mkdir /home/tmp
+              cd /home/tmp
+              git clone https://github.com/TimAbad/CIT480SeniorProject.git
+              ansible-playbook -i localhost /home/tmp/CIT480SeniorProject/Monitoring_WithAlerts/deploy_app.yml
+              EOF 
+```
+
+After running terraform apply and adding the resources, terraform will run the ansible-playbook and install the application following the creation of the ec2 instance. The local-exec portion of the command is used for targeting servers via SSH passing the root username and the ip of the instance. In addition, we pass the private key, and the playbook file we want to run. Since the local-exec runs after the remote-exec, we may have to incorporate it to get the monitoring and the application to run successfully. Now our infrastructure and application deploys with just the terraform plan and apply commands.
